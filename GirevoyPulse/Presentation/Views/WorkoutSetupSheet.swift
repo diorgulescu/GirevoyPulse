@@ -1,3 +1,19 @@
+// Copyright (C) 2026 Dragos Iorgulescu & GirevoyPulse Contributors
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
+
 import SwiftUI
 
 /// Configuration sheet for selecting GS discipline, timer mode, target cadence (RPM),
@@ -19,6 +35,7 @@ public struct WorkoutSetupSheet: View {
                 cadenceSection
                 polarBleSection
                 simulationSection
+                licenseSection
             }
             .navigationTitle("GirevoyPulse Setup")
             #if os(iOS)
@@ -214,6 +231,25 @@ public struct WorkoutSetupSheet: View {
             Text("5. Bench / Simulator Diagnostics")
         } footer: {
             Text("Use simulated streams to test 300ms fixation counting and HRV telemetry when away from the gym.")
+        }
+    }
+
+    private var licenseSection: some View {
+        Section {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("GirevoyPulse — Copyright (C) 2026 Dragos Iorgulescu & Contributors")
+                    .font(.footnote.weight(.semibold))
+                Text("This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under the terms of the GNU General Public License v3.0 (or later).")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                if let url = URL(string: "https://www.gnu.org/licenses/gpl-3.0.html") {
+                    Link("View GNU General Public License v3.0", destination: url)
+                        .font(.caption.weight(.semibold))
+                }
+            }
+            .padding(.vertical, 4)
+        } header: {
+            Text("6. Legal & License (GNU GPLv3)")
         }
     }
 }

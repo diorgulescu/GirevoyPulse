@@ -1,5 +1,7 @@
 # GirevoyPulse — Native iOS Girevoy Sport Training Assistant
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 **GirevoyPulse** is a native iOS 17+ training and competition assistant built for **Kettlebell Sport (Girevoy Sport / GS)** athletes across **Snatch**, **Jerk (Short Cycle)**, and **Long Cycle (TALC)**.
 
 ---
@@ -58,3 +60,13 @@ xcodebuild build \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGNING_ALLOWED=NO
 ```
+
+---
+
+## License
+
+Copyright (C) 2026 Dragos Iorgulescu & GirevoyPulse Contributors.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the **GNU General Public License** as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+See the [LICENSE](LICENSE) file for the full text of the GNU General Public License v3.0.
