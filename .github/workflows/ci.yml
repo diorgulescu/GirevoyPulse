@@ -1,0 +1,69 @@
+name: GirevoyPulse iOS CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    name: Core Domain & State Machine Tests
+    runs-on: macos-15
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Select Latest Stable Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+          swift --version
+
+      - name: Run Swift Package Unit Tests
+        run: swift test --parallel
+
+  ios-build:
+    name: Build iOS App Target (Simulator)
+    runs-on: macos-15
+    needs: unit-tests
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Select Latest Stable Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Cache Swift Package Manager Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            .spm-cache
+          key: ${{ runner.os }}-spm-${{ hashFiles('GirevoyPulse.xcodeproj/project.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Resolve SPM Dependencies (PolarBleSdk)
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project GirevoyPulse.xcodeproj \
+            -scheme GirevoyPulse \
+            -clonedSourcePackagesDirPath .spm-cache
+
+      - name: Build GirevoyPulse for iOS Simulator
+        run: |
+          xcodebuild build \
+            -project GirevoyPulse.xcodeproj \
+            -scheme GirevoyPulse \
+            -destination 'generic/platform=iOS Simulator' \
+            -clonedSourcePackagesDirPath .spm-cache \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
