@@ -4,6 +4,8 @@
 
 **GirevoyPulse** is a native iOS 17+ training and competition assistant built for **Kettlebell Sport (Girevoy Sport / GS)** athletes across **Snatch**, **Jerk (Short Cycle)**, and **Long Cycle (TALC)**.
 
+[![GirevoyPulse iOS CI](https://github.com/diorgulescu/GirevoyPulse/actions/workflows/ci.yml/badge.svg)](https://github.com/diorgulescu/GirevoyPulse/actions/workflows/ci.yml)
+
 ---
 
 ## Core Functional Pillars
