@@ -24,6 +24,7 @@ import com.polar.sdk.api.PolarBleApiCallback
 import com.polar.sdk.api.PolarBleApiDefaultImpl
 import com.polar.sdk.api.model.PolarAccelerometerData
 import com.polar.sdk.api.model.PolarDeviceInfo
+import com.polar.sdk.api.model.PolarHealthThermometerData
 import com.polar.sdk.api.model.PolarHrData
 import com.polar.sdk.api.model.PolarSensorSetting
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -178,6 +179,13 @@ class PolarManager(
 
             override fun disInformationReceived(identifier: String, disInfo: DisInfo) {
                 // Device Information Service (DIS) structured model callback
+            }
+
+            override fun htsNotificationReceived(
+                identifier: String,
+                data: PolarHealthThermometerData
+            ) {
+                // Health Thermometer Service (HTS) callback required by PolarBleApiCallbackProvider 5.16.0
             }
         })
         api = instance
