@@ -36,3 +36,16 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 *.xcresult
+
+# Android Studio / Gradle
+.gradle/
+.idea/
+local.properties
+*.iml
+*.apk
+*.aab
+*.ap_
+*.dex
+captures/
+output-metadata.json
+android-app/build/
