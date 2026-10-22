@@ -18,6 +18,7 @@ package com.girevoypulse.app.core.ble
 
 import android.content.Context
 import com.girevoypulse.app.domain.models.SternumAccSample
+import com.polar.androidcommunications.api.ble.model.DisInfo
 import com.polar.sdk.api.PolarBleApi
 import com.polar.sdk.api.PolarBleApiCallback
 import com.polar.sdk.api.PolarBleApiDefaultImpl
@@ -27,6 +28,7 @@ import com.polar.sdk.api.model.PolarHrData
 import com.polar.sdk.api.model.PolarSensorSetting
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
+import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -168,6 +170,14 @@ class PolarManager(
                 if (!powered) {
                     updateState { copy(connectionState = PolarConnectionState.Disconnected) }
                 }
+            }
+
+            override fun disInformationReceived(identifier: String, uuid: UUID, value: String) {
+                // Device Information Service (DIS) UUID characteristic callback
+            }
+
+            override fun disInformationReceived(identifier: String, disInfo: DisInfo) {
+                // Device Information Service (DIS) structured model callback
             }
         })
         api = instance
