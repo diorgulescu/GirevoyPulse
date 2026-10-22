@@ -7,8 +7,6 @@
 
 Both **Xcode** (`GirevoyPulse.xcodeproj` / `Package.swift`) and **Android Studio** (`settings.gradle.kts` / `:android-app`) projects coexist at the root of this repository with a 1:1 mirrored Clean Architecture.
 
-[![GirevoyPulse iOS CI](https://github.com/diorgulescu/GirevoyPulse/actions/workflows/ci.yml/badge.svg)](https://github.com/diorgulescu/GirevoyPulse/actions/workflows/ci.yml)
-
 ---
 
 ## Core Functional Pillars
